@@ -31,8 +31,12 @@ module Redd
 
         # Fetch a list of multis belonging to the user.
         def my_multis
-          multis = get("/api/multi/mine").body
+          multis = request_object(:get, "/api/multi/mine").body
           multis.map { |thing| object_from_body(thing) }
+        end
+
+        def my_modderated_subs
+          request_object(:get, '/subreddits/mine/moderator')
         end
 
         # Fetch an individual multi from its path.

@@ -20,7 +20,9 @@ module Redd
       def initialize(client, attributes)
         @before = attributes[:before]
         @after = attributes[:after]
+        puts "initializing the listing"
         attributes[:children].each do |child|
+          puts "getting #{child}"
           self << (client.object_from_body(child) || child)
         end
       end
